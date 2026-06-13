@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tokyo · Joanne's Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="../index.html" class="back-link">← All destinations</a>
+    <a href="../index.html" class="brand-mini">Joanne's Journey</a>
+  </div>
+</div>
+
+<div class="shell">
+
+  <!-- ============ HERO ============ -->
+  <section class="dest-hero">
+    <div class="eyebrow">Japan · HND · 5 visits</div>
+    <div class="dest-hero-row">
+      <div>
+        <h1 class="city"><span class="flag">🇯🇵</span>Tokyo</h1>
+        <div class="country-line">
+          <span>Japan</span>
+          <span>Last visit · <b>Feb 2026</b></span>
+          <span>Code · <b>HND</b></span>
+        </div>
+        <p class="intro-paragraph">Tokyo is harder than it looks for severe allergies — many restaurants only know to look out for the seven Japanese-recognized allergens, which don’t always overlap with mine. The places below have proven they actually read the card.</p>
+
+        <div style="margin-top:14px; padding: 12px 16px; border: 1px solid color-mix(in oklab, var(--accent) 35%, var(--line)); border-radius: 10px; background: color-mix(in oklab, var(--accent) 6%, transparent); display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: .14em; text-transform: uppercase;">Watch the videos</div>
+          <a href="https://www.instagram.com/explore/tags/justjoanneinjapan/" target="_blank" rel="noopener"
+             style="font-family: var(--font-mono); font-size: 13px; color: var(--text); padding: 6px 12px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line);">
+            #justjoanneinjapan ↗
+          </a>
+          <a href="https://www.instagram.com/joanneffan/" target="_blank" rel="noopener"
+             style="font-family: var(--font-mono); font-size: 13px; color: var(--text-dim);">@joanneffan</a>
+        </div>
+        <div class="editable-banner">
+          <b>Editing tip:</b> add or edit restaurants in the <code>EATS</code> list inside this file — each entry renders a card automatically, with its category tags, photo / Instagram link, and allergen notes.
+        </div>
+      </div>
+      <div class="snap-card">
+        <h3>At a glance</h3>
+        <div class="snap-stat-grid"><div><div class="snap-num">5</div><div class="snap-lbl">Visits</div></div><div><div class="snap-num">HND</div><div class="snap-lbl">Airport</div></div><div><div class="snap-num">¥</div><div class="snap-lbl">Currency</div></div><div><div class="snap-num">UTC+9</div><div class="snap-lbl">Timezone</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAP PINS ============ -->
+  <section>
+    <div class="sec-head">
+      <div><div class="eyebrow">Map</div><h2>Pins from my <em>Tokyo</em> map.</h2></div>
+      <div class="ticker">Drop screenshot</div>
+    </div>
+    <div class="map-screenshot-slot">SCREENSHOT YOUR GOOGLE MAPS PINS FOR TOKYO<br>DROP HERE — JPG / PNG</div>
+  </section>
+
+  <!-- ============ ALLERGY-SAFE EATS ============ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Allergy-safe</div>
+        <h2>Where I <em>actually</em> ate.</h2>
+      </div>
+      <div class="ticker">4 restaurants · cross-checked</div>
+    </div>
+    <div class="allergy-key">
+      <span class="legend">Color key</span>
+      <span class="allergen-chip safe">Safe / confirmed</span>
+      <span class="allergen-chip careful">Careful / with notes</span>
+      <span class="allergen-chip avoid">Avoid</span>
+    </div>
+
+    <div class="eats-controls">
+      <label class="eats-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+        <input id="eatSearch" type="search" placeholder="Search restaurants, neighborhoods, dishes…" autocomplete="off" />
+      </label>
+      <div class="eat-filters" id="eatFilters"></div>
+      <div class="eats-count" id="eatsCount"></div>
+    </div>
+    <div class="eats" id="eatsList"></div>
+    <div class="eats-empty" id="eatsEmpty" hidden>No spots match — try a different search or clear the filters.</div>
+
+    <script>
+    (function () {
+      var CATS = [
+        { key: 'groups',     label: 'Groups' },
+        { key: 'date',       label: 'Date night' },
+        { key: 'solo',       label: 'Solo dinner' },
+        { key: 'quick',      label: 'Quick meal' },
+        { key: 'affordable', label: 'Affordable' },
+        { key: 'splurge',    label: 'Splurge' }
+      ];
+
+      // ───────────────────────────────────────────────────────────
+      // RESTAURANT DATA — add or edit entries here.
+      // tags use the keys above. ig = Instagram post/reel link.
+      // photo = image filename (drop the image in this folder).
+      // ───────────────────────────────────────────────────────────
+      var EATS = [
+        {
+          name: 'Maisen (Aoyama)', rating: 4.6,
+          area: 'Aoyama', cuisine: 'Tonkatsu', price: '$$',
+          tags: ['solo', 'groups'],
+          notes: [
+            '<strong>Dedicated fryer.</strong> No seafood, no nuts — and they confirmed the panko is in-house. The sauce is house-made and listed.',
+            'Old bathhouse interior, easy to get into at 11:30am or 9pm.'
+          ],
+          allergens: [
+            { t: 'Seafood-free', s: 'safe' },
+            { t: 'Nut-free', s: 'safe' },
+            { t: 'Tonkatsu sauce contains soy + apple', s: 'careful' }
+          ],
+          order: 'Hire (filet) katsu set, hold the sauce.',
+          where: '4-8-5 Jingumae, Shibuya City',
+          ig: 'https://www.instagram.com/joanneffan/',
+          photo: ''
+        },
+        {
+          name: 'CoCo Ichibanya', rating: 4.2,
+          area: 'Everywhere', cuisine: 'Japanese curry', price: '$',
+          tags: ['affordable', 'quick', 'solo'],
+          notes: [
+            'Chains rule for allergies — CoCo lets you build the entire curry plate. The roux base is dairy-free at the standard spice level. Confirmed.',
+            'Allergen menu in English at every register. Use the QR.'
+          ],
+          allergens: [
+            { t: 'Nut-free', s: 'safe' },
+            { t: 'Seafood-free option', s: 'safe' },
+            { t: 'Some toppings (cream croquette) contain dairy', s: 'careful' }
+          ],
+          order: 'Pork cutlet curry, spice 3, no cheese, no fukujinzuke.',
+          where: '900+ locations — pick whichever',
+          ig: '',
+          photo: ''
+        },
+        {
+          name: 'Onibus Coffee Nakameguro', rating: 4.5,
+          area: 'Nakameguro', cuisine: 'Coffee + toast', price: '$',
+          tags: ['solo', 'quick', 'affordable'],
+          notes: [
+            '<strong>Oat milk on the menu.</strong> Tiny corner shop by the train tracks. Their banana bread is not allergy-safe (walnuts) but the basic toast/butter combo is fine for me.',
+            'Sit upstairs by the window for the train view.'
+          ],
+          allergens: [
+            { t: 'Oat milk available', s: 'safe' },
+            { t: 'Banana bread contains walnuts', s: 'careful' }
+          ],
+          order: 'Flat white with oat, plain butter toast.',
+          where: '2-14-1 Kamimeguro, Meguro',
+          ig: '',
+          photo: ''
+        },
+        {
+          name: 'Bills (Omotesando)', rating: 4.4,
+          area: 'Omotesando', cuisine: 'Breakfast', price: '$$$',
+          tags: ['date', 'groups', 'splurge'],
+          notes: [
+            'Aussie import — kitchen English is excellent, allergy training is real. Famous ricotta hotcakes obviously not for me, but the avocado toast and the steak are perfect.',
+            'Reservations from the website. Saturday brunch is a 90-min wait.'
+          ],
+          allergens: [
+            { t: 'Allergy-aware kitchen', s: 'safe' },
+            { t: 'English menu', s: 'safe' },
+            { t: 'Most pancake dishes have dairy/nuts', s: 'careful' }
+          ],
+          order: 'Avocado on toast, hold the feta. Scrambled eggs.',
+          where: '5-10-1 Jingumae, Omotesando Hills',
+          ig: 'https://www.instagram.com/explore/tags/justjoanneinjapan/',
+          photo: ''
+        }
+      ];
+
+      var listEl   = document.getElementById('eatsList');
+      var filtersEl = document.getElementById('eatFilters');
+      var countEl  = document.getElementById('eatsCount');
+      var emptyEl  = document.getElementById('eatsEmpty');
+      var searchEl = document.getElementById('eatSearch');
+      var active = {};
+      var query = '';
+
+      function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+      function stars(r) {
+        var f = Math.floor(r);
+        return '<span class="star">' + new Array(f + 1).join('★') + '</span>' +
+               new Array(5 - f + 1).join('☆') +
+               ' <span style="margin-left:6px">' + r.toFixed(1) + '</span>';
+      }
+
+      function media(e) {
+        if (e.photo) {
+          var img = '<img src="' + esc(e.photo) + '" alt="' + esc(e.name) + '" loading="lazy">';
+          if (e.ig) return '<a class="eat-media" href="' + esc(e.ig) + '" target="_blank" rel="noopener">' + img + '<span class="eat-media-badge">▶ Watch on Instagram</span></a>';
+          return '<div class="eat-media">' + img + '</div>';
+        }
+        if (e.ig) {
+          return '<a class="eat-media eat-media-ig" href="' + esc(e.ig) + '" target="_blank" rel="noopener">' +
+                 '<span class="eat-media-play">▶</span>' +
+                 '<span class="eat-media-badge">Watch on Instagram</span></a>';
+        }
+        return '<div class="eat-media eat-media-empty">Add a photo<br>or paste an IG reel link</div>';
+      }
+
+      function card(e) {
+        var meta = '<span>' + esc(e.area) + '</span><span class="dot">·</span><span>' + esc(e.cuisine) + '</span><span class="dot">·</span><span>' + esc(e.price) + '</span>';
+        var tags = e.tags.map(function (k) {
+          var c = CATS.filter(function (x) { return x.key === k; })[0];
+          return c ? '<span class="eat-tag">' + c.label + '</span>' : '';
+        }).join('');
+        var notes = e.notes.map(function (n) { return '<p>' + n + '</p>'; }).join('');
+        var allerg = e.allergens.map(function (a) { return '<span class="allergen-chip ' + a.s + '">' + esc(a.t) + '</span>'; }).join('');
+        return '<article class="eat">' +
+          '<div class="eat-main">' +
+            '<div class="eat-head"><span class="eat-name">' + esc(e.name) + '</span><div class="eat-rating">' + stars(e.rating) + '</div></div>' +
+            '<div class="eat-meta">' + meta + '</div>' +
+            (tags ? '<div class="eat-tags">' + tags + '</div>' : '') +
+            '<div class="eat-notes">' + notes + '</div>' +
+          '</div>' +
+          '<div class="eat-side">' +
+            media(e) +
+            '<div class="panel"><h4>Allergen status</h4><div class="allergen-list">' + allerg + '</div></div>' +
+            '<div class="panel"><h4>What I order</h4><div class="order">' + esc(e.order) + '</div></div>' +
+            '<div class="panel"><h4>Where</h4><div class="order">' + esc(e.where) + '</div><div class="price-line" style="margin-top:6px">' + esc(e.price) + ' · ' + esc(e.cuisine) + '</div></div>' +
+          '</div>' +
+        '</article>';
+      }
+
+      function matches(e) {
+        var q = query.trim().toLowerCase();
+        var keys = Object.keys(active);
+        var okTags = keys.length ? e.tags.some(function (t) { return active[t]; }) : true;
+        var okQ = true;
+        if (q) {
+          var hay = (e.name + ' ' + e.area + ' ' + e.cuisine + ' ' + e.notes.join(' ') + ' ' + e.order).toLowerCase();
+          okQ = hay.indexOf(q) !== -1;
+        }
+        return okTags && okQ;
+      }
+
+      function render() {
+        var shown = EATS.filter(matches);
+        listEl.innerHTML = shown.map(card).join('');
+        emptyEl.hidden = shown.length !== 0;
+        countEl.textContent = 'Showing ' + shown.length + ' of ' + EATS.length;
+      }
+
+      filtersEl.innerHTML = '<span class="legend">Filter</span>' +
+        CATS.map(function (c) { return '<span class="eat-filter-chip" data-key="' + c.key + '">' + c.label + '</span>'; }).join('');
+      filtersEl.addEventListener('click', function (ev) {
+        var chip = ev.target.closest('.eat-filter-chip');
+        if (!chip) return;
+        var k = chip.getAttribute('data-key');
+        if (active[k]) { delete active[k]; chip.classList.remove('on'); }
+        else { active[k] = true; chip.classList.add('on'); }
+        render();
+      });
+      searchEl.addEventListener('input', function () { query = searchEl.value; render(); });
+      render();
+    })();
+    </script>
+  </section>
+
+  <!-- ============ HIDDEN OVER HYPE ============ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Hidden over Hype</div>
+        <h2>What to <em>skip</em>, and what to do instead.</h2>
+      </div>
+      <div class="ticker">My signature · go here</div>
+    </div>
+    <div class="hoh-grid">
+      
+    <div class="hoh">
+      <div class="hoh-col hype">
+        <span class="hoh-tag hype">Hyped</span>
+        <h3>Tsukiji Outer Market for sushi</h3>
+        <p>It IS the sushi mecca but for severe seafood allergies it is literally a sensory hazard. The air is fish.</p>
+      </div>
+      <div class="hoh-arrow">
+        <svg viewBox="0 0 40 16" fill="none"><path d="M 2 8 L 38 8 M 32 2 L 38 8 L 32 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        instead
+      </div>
+      <div class="hoh-col hidden">
+        <span class="hoh-tag hidden">Go here</span>
+        <h3>Ginza Sembikiya Café</h3>
+        <p>Old-school fruit parlor. Famous melon shortcake, parfaits, perfectly safe for seafood allergies. Spend the same money, leave alive.</p>
+      </div>
+    </div>
+  
+    <div class="hoh">
+      <div class="hoh-col hype">
+        <span class="hoh-tag hype">Hyped</span>
+        <h3>Shibuya Sky observation deck</h3>
+        <p>Crowded, overpriced, the queue is its own ride. Worth doing once if it’s your first trip.</p>
+      </div>
+      <div class="hoh-arrow">
+        <svg viewBox="0 0 40 16" fill="none"><path d="M 2 8 L 38 8 M 32 2 L 38 8 L 32 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        instead
+      </div>
+      <div class="hoh-col hidden">
+        <span class="hoh-tag hidden">Go here</span>
+        <h3>Bunkyo Civic Center observation room</h3>
+        <p>Free. Open to the public. Same Tokyo skyline including Mt Fuji on a clear day. The salaryman favorite.</p>
+      </div>
+    </div>
+  
+    <div class="hoh">
+      <div class="hoh-col hype">
+        <span class="hoh-tag hype">Hyped</span>
+        <h3>TeamLab Planets</h3>
+        <p>Brilliant but they herd 5,000 people through per day and the ticket gymnastics are real.</p>
+      </div>
+      <div class="hoh-arrow">
+        <svg viewBox="0 0 40 16" fill="none"><path d="M 2 8 L 38 8 M 32 2 L 38 8 L 32 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        instead
+      </div>
+      <div class="hoh-col hidden">
+        <span class="hoh-tag hidden">Go here</span>
+        <h3>Hara Museum / Hara Museum ARC (Gunma)</h3>
+        <p>Smaller contemporary art museum, intimate, with a café. Day trip to Gunma is the real version of Tokyo art-day.</p>
+      </div>
+    </div>
+  
+    </div>
+  </section>
+
+  <!-- ============ TIPS ============ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Survival kit</div>
+        <h2>Tips for <em>Tokyo</em>.</h2>
+      </div>
+      <div class="ticker">3 tips</div>
+    </div>
+    <div class="tips-grid">
+      
+    <div class="tip">
+      <div class="tip-num">TIP · 01</div>
+      <h4>Get an allergy card in Japanese AND show it</h4>
+      <p>Don’t just say nut allergy in English. The cultural baseline for nuts in Japan is peanut — pine nuts, almonds, and macadamia don’t register. Use a card that lists every nut.</p>
+    </div>
+  
+    <div class="tip">
+      <div class="tip-num">TIP · 02</div>
+      <h4>Konbini = lifeline</h4>
+      <p>FamilyMart and Lawson have full allergen labels in Japanese with icons. Tamago sando, onigiri (umeboshi/konbu), and salads are usually safe.</p>
+    </div>
+  
+    <div class="tip">
+      <div class="tip-num">TIP · 03</div>
+      <h4>Avoid izakaya counter seats</h4>
+      <p>They share fryers and prep boards. Sit at a table where the kitchen knows you arrived and can isolate a station.</p>
+    </div>
+  
+    </div>
+  </section>
+
+  <!-- ============ PHOTOS ============ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Photo roll</div>
+        <h2>From the <em>camera</em> roll.</h2>
+      </div>
+      <div class="ticker">Drop your photos here</div>
+    </div>
+    <div class="photo-strip">
+      <div class="photo-slot">TOKYO · 01<br>DROP IMAGE</div>
+      <div class="photo-slot">TOKYO · 02<br>DROP IMAGE</div>
+      <div class="photo-slot">TOKYO · 03<br>DROP IMAGE</div>
+      <div class="photo-slot">TOKYO · 04<br>DROP IMAGE</div>
+    </div>
+  </section>
+
+  <!-- ============ NEXT CITIES ============ -->
+  <div class="dest-foot">
+    <div class="dest-foot-row">
+      <div>Keep reading</div>
+      <div>Next destinations →</div>
+    </div>
+    <div class="next-cities">
+      <a class="next-city" href="sapporo.html"><span>🇯🇵</span> Sapporo <span style="opacity:.5">→</span></a><a class="next-city" href="okinawa.html"><span>🇯🇵</span> Okinawa <span style="opacity:.5">→</span></a><a class="next-city" href="seoul.html"><span>🇰🇷</span> Seoul <span style="opacity:.5">→</span></a>
+      
+    <a class="next-city" href="https://www.instagram.com/explore/tags/justjoanneinjapan/" target="_blank" rel="noopener" style="background: color-mix(in oklab, var(--accent) 14%, transparent); border-color: var(--accent); color: var(--accent);">
+      <span>📹</span> #justjoanneinjapan on Instagram <span style="opacity:.6">↗</span>
+    </a>
+  
+      <a class="next-city" href="../index.html">← All destinations</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

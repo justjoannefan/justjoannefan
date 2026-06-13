@@ -1,0 +1,3 @@
+/cards.html     /cards.html     200
+/destinations/* /destinations/:splat 200
+/*              /index.html     200

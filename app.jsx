@@ -529,56 +529,6 @@ function FinancePreview() {
   );
 }
 
-// ===================== Email Signup =====================
-function EmailSignup() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  function onSubmit(e) {
-    e.preventDefault();
-    if (!valid) return;
-    // TODO: wire to MailerLite / Buttondown action URL
-    setSubmitted(true);
-  }
-
-  return (
-    <div className="email-signup scroll-in">
-      <div className="es-left">
-        <div className="eyebrow">Get notified</div>
-        <h3>New cities + new restaurants, <em>straight to your inbox</em>.</h3>
-        <p>I&apos;ll only email when I publish a new guide or refresh a city. No newsletter spam — promise.</p>
-      </div>
-      <form className={`es-form ${submitted ? 'done' : ''}`} onSubmit={onSubmit}>
-        {!submitted ? (
-          <>
-            <input
-              type="email"
-              className="es-input"
-              placeholder="you@somewhere.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit" className="es-btn" disabled={!valid}>
-              Notify me <span aria-hidden="true">→</span>
-            </button>
-            <div className="es-fine">Powered by the soon-to-be-set-up newsletter ;)</div>
-          </>
-        ) : (
-          <div className="es-thanks">
-            <div className="es-thanks-icon">✓</div>
-            <div>
-              <div className="es-thanks-title">You&apos;re on the list.</div>
-              <div className="es-thanks-sub">I&apos;ll send you a hello when the next city drops.</div>
-            </div>
-          </div>
-        )}
-      </form>
-    </div>
-  );
-}
-
 // ===================== Apps grid =====================
 function AppsGrid() {
   return (
@@ -592,7 +542,7 @@ function AppsGrid() {
         </div>
         <div className="ticker">CURATED · 09 APPS</div>
       </div>
-      <p className="apps-disclosure scroll-in">Klook, Hostelworld &amp; Agoda are affiliate links — thank you in advance for the support :)</p>
+      <p className="apps-disclosure scroll-in">Klook, Hostelworld, Agoda &amp; Skyscanner are affiliate links — thank you in advance for the support :)</p>
       <div className="apps-grid scroll-stagger scroll-in">
         {APPS.map((a, i) => {
           const El = a.url ? 'a' : 'div';
@@ -814,7 +764,6 @@ function App() {
         <StatsStrip />
         <WorldMap />
         <DestinationsGrid />
-        <EmailSignup />
         <FinancePreview />
         <AppsGrid />
         <About />

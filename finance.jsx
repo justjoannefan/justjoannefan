@@ -188,6 +188,23 @@ function CardsPage() {
         </section>
 
         <section className="cards-block">
+          <div className="csr-tool csr-tool--csp">
+            <div className="csr-tool-left">
+              <div className="eyebrow">News</div>
+              <h3 className="csr-tool-title">Chase Sapphire Preferred® is changing</h3>
+              <p className="csr-tool-desc">The CSP is getting updated benefits and a new annual fee structure. Here's what's actually changing and whether it's still worth carrying.</p>
+              <a className="csr-tool-btn csr-tool-btn--csp" href="https://www.nextcard.com/articles/how-is-my-chase-sapphire-preferred-changing" target="_blank" rel="noopener">
+                Read the breakdown ↗
+              </a>
+            </div>
+            <div className="csr-tool-badge csr-tool-badge--csp" aria-hidden="true">
+              <span>CSP</span>
+              <span style={{fontSize:'11px', opacity:.6, letterSpacing:'.12em', textTransform:'uppercase', marginTop:'6px'}}>Changes</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="cards-block">
           <div className="finance-tips">
             <h3 className="fin-tips-title">Rules I live by</h3>
             <div className="fin-tips-grid">

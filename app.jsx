@@ -131,7 +131,7 @@ function DestinationsGrid() {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
   const [showAll, setShowAll] = useState(false);
-  const COLLAPSED_COUNT = 9;
+  const COLLAPSED_COUNT = 6;
   const countries = ['all', 'Taiwan', 'South Korea', 'Japan', 'USA', 'Thailand', 'Europe'];
   const filtered = useMemo(() => {
     let arr = DESTINATIONS;
@@ -412,8 +412,8 @@ function WorldMap() {
 
       <div className="passport-wrap scroll-in">
         <div className="passport-card">
-          <img src="assets/flighty-passport.png" alt="Joanne's flight map — 96 flights, 141,703 miles, 40 airports across 16 countries" />
-          <div className="passport-corner">REF · 96 FLT · 141,703 MI · 40 AP</div>
+          <img src="assets/flighty-passport.png" alt="Joanne's flight map — 105 flights, 154,708 miles, 46 airports across 16 countries" />
+          <div className="passport-corner">REF · 105 FLT · 154,708 MI · 46 AP</div>
         </div>
 
         <div className="passport-side">
@@ -432,9 +432,9 @@ function WorldMap() {
 
           <div className="passport-stats">
             <div><span className="ps-num">16</span><span className="ps-lbl">Countries</span></div>
-            <div><span className="ps-num">96</span><span className="ps-lbl">Flights</span></div>
-            <div><span className="ps-num">29</span><span className="ps-lbl">Airlines</span></div>
-            <div><span className="ps-num">40</span><span className="ps-lbl">Airports</span></div>
+            <div><span className="ps-num">105</span><span className="ps-lbl">Flights</span></div>
+            <div><span className="ps-num">32</span><span className="ps-lbl">Airlines</span></div>
+            <div><span className="ps-num">46</span><span className="ps-lbl">Airports</span></div>
           </div>
 
           <h3 style={{ marginTop: 22 }}>Stamped passports</h3>
@@ -524,6 +524,24 @@ function FinancePreview() {
             <span className="fin-link-arrow">↗</span>
           </a>
         ))}
+      </div>
+    </section>
+  );
+}
+
+// ===================== Substack promo =====================
+function SubstackPromo() {
+  return (
+    <section style={{background:'#0d1014',border:'1px solid rgba(255,255,255,0.08)',borderRadius:'12px',padding:'22px 26px',maxWidth:'640px',margin:'32px auto',color:'#e8e6e0',fontFamily:'system-ui,sans-serif'}}>
+      <div style={{fontFamily:"ui-monospace,'SF Mono',Menlo,monospace",fontSize:'11px',letterSpacing:'0.5px',color:'#8a8a85',textTransform:'uppercase',marginBottom:'10px'}}>Now boarding · The Allergy Table</div>
+      <p style={{fontFamily:"Georgia,'Times New Roman',serif",fontStyle:'italic',fontSize:'18px',margin:'0 0 10px'}}>A living guide to eating safely in the cities I keep going back to.</p>
+      <div style={{display:'flex',gap:'10px',flexWrap:'wrap',marginBottom:'14px'}}>
+        <span style={{fontSize:'12px',border:'1px solid rgba(255,255,255,0.15)',borderRadius:'999px',padding:'4px 12px',color:'#b5b3ad'}}>Free · trip recaps</span>
+        <span style={{fontSize:'12px',border:'1px solid #f2c341',borderRadius:'999px',padding:'4px 12px',color:'#f2c341'}}>$8/mo · full guide</span>
+      </div>
+      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'12px',flexWrap:'wrap'}}>
+        <span style={{fontSize:'12px',color:'#8a8a85'}}>20+ Seoul spots reviewed and counting</span>
+        <a href="https://joannefan.substack.com" target="_blank" rel="noopener" style={{background:'#f2c341',color:'#0d1014',fontWeight:600,fontSize:'13px',padding:'10px 18px',borderRadius:'8px',textDecoration:'none',whiteSpace:'nowrap'}}>Subscribe on Substack ↗</a>
       </div>
     </section>
   );
@@ -764,6 +782,7 @@ function App() {
         <StatsStrip />
         <WorldMap />
         <DestinationsGrid />
+        <SubstackPromo />
         <FinancePreview />
         <AppsGrid />
         <About />

@@ -145,7 +145,7 @@ const DESTINATIONS = [
   },
   {
     slug: 'seoul', name: 'Seoul',       country: 'South Korea', flag: '🇰🇷',
-    code: 'ICN', visits: 18, lastVisit: 'Mar 2026',
+    code: 'ICN', visits: 19, lastVisit: 'Jul 2026',
     summary: 'KBBQ is a minefield. Here\'s where I actually eat — and what to skip.',
     vibe: ['Cafés', 'KBBQ (carefully)', 'K-beauty', '24/7 city'],
     color: '#7b61ff',
@@ -159,11 +159,12 @@ const DESTINATIONS = [
     color: '#d6c39f',
   },
   {
-    slug: 'tainan', name: 'Tainan',     country: 'Taiwan',      flag: '🇹🇼',
-    code: 'TNN', visits: 6, lastVisit: '2025',
-    summary: 'The oldest food city in Taiwan. Beef soup at dawn, danzai noodles at noon, milkfish congee at midnight.',
-    vibe: ['Beef soup', 'Old town', 'Temples', 'Slow pace'],
-    color: '#f4c25a',
+    slug: 'china', name: 'China',       country: 'China',       flag: '🇨🇳',
+    code: 'CN', visits: 3, lastVisit: 'Jul 2026',
+    sub: 'Chongqing, Shanghai, Shenzhen — incl. Hong Kong',
+    summary: 'First real dive into the mainland — Chongqing\'s fog and numbing hot pot, Shanghai and Shenzhen\'s specialties, then across the border into Hong Kong for dim sum!',
+    vibe: ['Hot pot', 'Xiaolongbao', 'Tech-city eats', 'New dialects'],
+    color: '#e0344c',
   },
   {
     slug: 'san-francisco', name: 'San Francisco', country: 'USA', flag: '🇺🇸',
@@ -376,10 +377,10 @@ const DESTINATIONS = [
 // STATS — top strip
 // ───────────────────────────────────────────────────────────────────
 const STATS = [
-  { num: '96',      label: 'Flights',          delta: 'Since Jan 2023' },
-  { num: '141,703', suffix: 'mi', label: 'Distance flown', delta: '~5.7× equator' },
-  { num: '40',      label: 'Airports',         delta: '29 airlines' },
-  { num: '14d 13h', label: 'Hours aloft',      delta: '≈ 2 work weeks' },
+  { num: '105',     label: 'Flights',          delta: 'Since Jan 2023' },
+  { num: '154,708', suffix: 'mi', label: 'Distance flown', delta: '~6.2× equator' },
+  { num: '46',      label: 'Airports',         delta: '32 airlines' },
+  { num: '15d 20h', label: 'Hours aloft',      delta: '≈ 2 work weeks' },
 ];
 
 // Countries visited (from the Flighty passport)

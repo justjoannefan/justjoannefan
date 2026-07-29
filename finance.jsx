@@ -246,3 +246,5 @@ function CardsPage() {
 
 // Export CardsPage for use by app.jsx router (don't auto-render)
 Object.assign(window, { CardsPage });
+
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(CardsPage));

@@ -52,7 +52,7 @@ const AIRLINE_COLORS = {
 // Edit these numbers anytime; they're decoupled from the FLIGHTS array.
 // ───────────────────────────────────────────────────────────────────
 const YEAR_SUMMARY = [
-  { year: 2026, flights: 12, countries: 7, miles: '40K' },
+  { year: 2026, flights: 16, countries: 9, miles: '40K' },
   { year: 2025, flights: 35, countries: 10, miles: '67K' },
   { year: 2024, flights: 38, countries: 6, miles: '28K' },
   { year: 2023, flights: 11, countries: 4, miles: '6K'  },
@@ -72,6 +72,8 @@ const YEAR_COUNTRIES = {
     { code: 'TH', flag: '🇹🇭', name: 'Thailand' },
     { code: 'SG', flag: '🇸🇬', name: 'Singapore' },
     { code: 'US', flag: '🇺🇸', name: 'United States' },
+    { code: 'CN', flag: '🇨🇳', name: 'China' },
+    { code: 'HK', flag: '🇭🇰', name: 'Hong Kong' },
   ],
   2025: [
     { code: 'TW', flag: '🇹🇼', name: 'Taiwan' },
